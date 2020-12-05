@@ -7,7 +7,7 @@ import random
 l = 0
 for i in range(0,10):
     print('这是一个20之内的随机练习')
-    a = random.randint(12,20)
+    a = random.randint(12,18)
     print('a = {0}'.format(a))
     m = a % 10
     b = random.randint(m+1,9)
