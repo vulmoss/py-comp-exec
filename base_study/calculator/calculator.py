@@ -4,6 +4,26 @@
 
 import sys
 import csv # 用于写入 csv 文件
+from collections import namedtuple
+
+
+IncomeTaxQuickLookupItem = namedtuple(
+        'IncomeTaxQuickLookupItem',
+        ['start_point','tax_rate','quick_subtractor']
+        )
+
+INCOME_TAX_START_POINT = 3500
+
+INCOME_TAX_QUICK_LOOKUP_TABLE = [
+        IncomeTaxQuickLookupItem(8000,0.45,13505),
+        IncomeTaxQuickLookupItem(8000,0.45,13505),
+        IncomeTaxQuickLookupItem(8000,0.45,13505),
+        IncomeTaxQuickLookupItem(8000,0.45,13505),
+        IncomeTaxQuickLookupItem(8000,0.45,13505),
+        IncomeTaxQuickLookupItem(8000,0.45,13505),
+        IncomeTaxQuickLookupItem(8000,0.45,13505)
+        )
+
 
 
 # 处理命令行参数类
@@ -11,6 +31,7 @@ class Args(object):
 
     def __init__(self):
         self.args = sys.argv[1:]
+
 
     """
     补充代码：
