@@ -6,7 +6,9 @@ cap1 = ['F','F','B','B','F','B','F','B','F','B','F','F']
 cap1 = ['B','F','B','B','B','F','F','B','F','B','F','B']
 
 class Soultion(object):
-    def pleaseConform(caps):
+    def __int__(self,caps):
+        self.caps = caps
+    def pleaseConform(self,caps):
         start = forward = backward = 0
         intervals = []
         for i in range(1,len(caps)):
@@ -17,7 +19,7 @@ class Soultion(object):
                 else:
                     backward += 1
                 start = i
-            invervals.append((start,len(caps) - 1,caps[start]))
+            intervals.append((start,len(caps) - 1,caps[start]))
             if caps[start] == 'F':
                 forward += 1
             else:
