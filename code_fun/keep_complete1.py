@@ -19,17 +19,17 @@ class Soultion(object):
                 else:
                     backward += 1                              #否则backward+1
                 start = i                #数组的start值不等于当前位置的数值的是后，将i赋值给start
-        intervals.append((start,len(caps) - 1,caps[start]))
-        if caps[start] == 'F':
+        intervals.append((start,len(caps) - 1,caps[start])) #将最后一个区间也加入到intervals中
+        if caps[start] == 'F':       #如果start的是F的话，前一次
             forward += 1
         else:
-            backward += 1
-        if forward < backward:
-            flip = 'F'
+            backward += 1            #start是B的话，后加一次
+        if forward < backward:       #如果往后多的话
+            flip = 'F'                #要小的 F
         else:
-            flip = 'B'
-        for t in intervals:
-            if t[2] == flip:
+            flip = 'B'                #往后转的小的话 ，就赋值给B
+        for t in intervals:           #在intervals这个数组中循环
+            if t[2] == flip:          #只有和转的方向相符的才打印输出
                 print('People is positions',t[0],'through',t[1],'flip you caps!')
 
 
