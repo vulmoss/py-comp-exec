@@ -2,7 +2,7 @@
 # encoding: utf-8
 #__author__ == 'vulMoss'
 
-cap1 = ['B','B','F','B','B','F','B','F','B','F','B','F','F']
+cap1 = ['F','F','B','B','F','B','F','B','F','B','F','F']
 cap2 = ['B','F','B','B','B','F','F','B','F','B','F','B']
 
 def pleaseConformInepass(caps):
