@@ -3,8 +3,7 @@
 #__author__ == 'vulMoss'
 
 cap1 = ['F','F','B','B','F','B','F','B','F','B','F','F']
-cap2 = ['B','F','B','B','B','F','F','B','F','B','F','B']
-
+cap2 = ['B','B','B','B','B','F','F','F','F','F','F','F']
 class Soultion(object):
     def __int__(self,caps):
         self.caps = caps
@@ -37,3 +36,5 @@ class Soultion(object):
 if __name__ == '__main__':
     s = Soultion()
     s.pleaseConform(cap1)
+    print('-----------------------------------------')
+    s.pleaseConform(cap2)

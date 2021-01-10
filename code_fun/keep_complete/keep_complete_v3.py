@@ -3,7 +3,7 @@
 #__author__ == 'vulMoss'
 
 cap1 = ['F','F','B','B','F','B','F','B','F','B','F','F']
-cap2 = ['B','F','B','B','B','F','F','B','F','B','F','B']
+cap2 = ['B','B','B','B','B','F','F','F','F','F','F','F']
 
 def pleaseConformInepass(caps):
     caps = caps + [caps[0]] #数组加上数组的首个数值
@@ -17,4 +17,5 @@ def pleaseConformInepass(caps):
 
 if __name__ == '__main__':
     pleaseConformInepass(cap1)
-
+    print('--------------------------')
+    pleaseConformInepass(cap2)
