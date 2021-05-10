@@ -2,7 +2,7 @@
 # encoding: utf-8
 #__author__ == 'vulMoss'
 
-sched = [(6,8),(6,12),(6,7),(7,8),(7,10),(8,9),(8,10),(9,12),(9,10),(10,11),(10,12),(11,12)] #定义时间区间
+sched = [(6,8),(6,12),(6,7),(7,8),(7,10),(8,9),(8,10),(9,12),(9,10),(10,11),(10,12),(11,12),(6,13)] #定义时间区间
 
 def bestTimeToParty(schedule):
     start = schedule[0][0]
@@ -26,7 +26,7 @@ def celebrityDensity(sched,start,end):
         for c in sched:
             if c[0] <= i and c[1] > i:
                 count[i] += 1
-        return count
+            return count
 
 if __name__ == '__main__':
     bestTimeToParty(sched)
