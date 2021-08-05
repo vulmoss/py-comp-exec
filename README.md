@@ -1,2 +1,2 @@
-# py-comp-n-s-a
+# py-comp-exec
 This a exercise with python
