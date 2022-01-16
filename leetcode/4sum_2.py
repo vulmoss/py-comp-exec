@@ -4,7 +4,7 @@ class Soulation():
         res = 0
         for i in A:
             for j in B:
-                mapper[i + j] = mapper.get(i + j,0) + 1
+                mapper[i + j] = mapper.get(i + j,0) + 1 #dict.get 没有 i+j的key，则value返回0
         for i in C :
             for j in D:
                 res += mapper.get(-1 * (i + j),0)
