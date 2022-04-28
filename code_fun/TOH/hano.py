@@ -10,3 +10,5 @@ def hanoi(numRing, startPeg, endPeg):
         numMoves += 1
         numMoves += hanoi(numRings -1 ,6 - startPeg - endPeg, endPeg)
     return numMoves
+if __name__ == '__main__':
+    hanoi(4,1,3)
