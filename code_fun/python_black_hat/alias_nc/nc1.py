@@ -25,6 +25,9 @@ def usage():
     print("")
     print("Usage:nc1.py -t target_host -p port")
     print("-l --listen - listen on [host]:[port] for -incoming connections")
+    print("-e --execute=file_to_run -execute the given")
+    print("-c --command ")
+    print("-u --upalod")
 
 def main():
     global listen
@@ -52,3 +55,15 @@ def main():
             command = True
         elif o in ("-u","--upload"):
             upload_destination = a
+        elif o in ("-t","--target"):
+            target = a
+        elif o in ("-p","--port"):
+            port = int(a)
+        else:
+            assert False,"Unhandled Option"
+    if not listen and len(target) and port > 0:
+        buffer = sys.stdin.read()
+        client_sender(buffer)
+    if listen:
+        server_loop()
+        
