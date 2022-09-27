@@ -66,4 +66,4 @@ def main():
         client_sender(buffer)
     if listen:
         server_loop()
-        
+
