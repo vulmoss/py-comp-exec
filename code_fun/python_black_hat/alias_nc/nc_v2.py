@@ -36,6 +36,42 @@ def usage(): #打印所有的提示
     print ("echo 'ABCDEFGHI' | ./netcat.py -t localhost -p 8088")
     sys.exit(0)
 
+def main():
+    global LISTEN
+    global PORT
+    global EXECUTE
+    global COMMAND
+    global UP_DEST
+    global TARGET
+
+    if not len(sys.argv[1:]): #后面没有命令行参数的时候输出提示
+        usage()
+
+    # 读取命令行选项
+    try:
+        opts, args = getopt.getopt(sys.argv[1:],"hle:t:p:cu",  ["help", "LISTEN", "EXECUTE", "TARGET", "PORT", "COMMAND", "UPLOAD"])
+    except getopt.GetoptError as err:
+        print (str(err))
+        usage()
+
+    for o, a in opts:
+        if o in ('-h', '--help'):
+            usage()
+        elif o in ('-l', '--listen'):
+            LISTEN = True
+        elif o in ('-e', '--execute'):
+            EXECUTE = a
+        elif o in ('-c', '--commandshell'):
+            COMMAND = True
+        elif o in ('-u', '--upload'):
+            UP_DEST = a
+        elif o in ('-t', '--target'):
+            TARGET = a
+        elif o in ('-p', '--port'):
+            PORT = int(a)
+        else:
+            assert False, "Unhandled option"
+
 # 服务端函数,与上篇中的 TCP 服务端还是很相似的
 def server_loop():  #定义一个服务端
     server = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
@@ -91,7 +127,7 @@ def client_handler(client_socket):
     global COMMAND
 
     # 检测上传文件
-    if len(UP_DEST):
+    if len(UP_DEST): #UP_DEST是 -u 后面的参数
         file_buf = ''
 
         # 读取数据,直到没有新的数据
@@ -139,49 +175,11 @@ def run_command(command):
        output = "Failed to execute command.\r\n"
     return output
 
-def main():
-    global LISTEN
-    global PORT
-    global EXECUTE
-    global COMMAND
-    global UP_DEST
-    global TARGET
-
-    if not len(sys.argv[1:]):
-        usage()
-
-    # 读取命令行选项
-    try:
-        opts, args = getopt.getopt(sys.argv[1:],"hle:t:p:cu", \
-            ["help", "LISTEN", "EXECUTE", "TARGET", "PORT", "COMMAND", "UPLOAD"])
-    except getopt.GetoptError as err:
-        print (str(err))
-        usage()
-
-    for o, a in opts:
-        if o in ('-h', '--help'):
-            usage()
-        elif o in ('-l', '--listen'):
-            LISTEN = True
-        elif o in ('-e', '--execute'):
-            EXECUTE = a
-        elif o in ('-c', '--commandshell'):
-            COMMAND = True
-        elif o in ('-u', '--upload'):
-            UP_DEST = a
-        elif o in ('-t', '--target'):
-            TARGET = a
-        elif o in ('-p', '--port'):
-            PORT = int(a)
-        else:
-            assert False, "Unhandled option"
-
     # NETCAT Client
-    if not LISTEN and len(TARGET) and PORT > 0:
+    if not LISTEN and len(TARGET) and PORT > 0: #没有监听，有目标ip和端口号的话 nc是客户端，发送数据
         # 从命令行读取内存数据
         # 这里会阻塞,所以不在向标准输入发送数据时要发送 CTRL - D
         buffer = sys.stdin.read()
-
         # 发送数据
         client_sender(buffer)
 
