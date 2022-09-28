@@ -22,44 +22,43 @@ UP_DEST  = ''
 PORT     = 0
 
 # 帮助选项
-def usage():
-    print( "Usage: netcat_Liu.py -t <HOST> -p <PORT>")
+def usage(): #打印所有的提示
+    print( "Usage: nc.py -t <HOST> -p <PORT>")
     print ("  -l --listen                  listen on HOST:PORT")
     print ("  -e --execute=file            execute the given file")
     print ("  -c --command                 initialize a command shell")
     print ("  -u --upload=destination      upload file and write to destination")
     print ("")
     print ("Examples:")
-    print ("netcat_Liu.py -t localhost -p 5555 -l -c")
-    print ("netcat_Liu.py -t localhost -p 5555 -l -u=C:\\target.exe")
-    print ("netcat_Liu.py -t localhost -p 5555 -l -e=\"cat /etc/passwd\"")
-    print ("echo 'ABCDEFGHI' | ./netcat_Liu.py -t localhost -p 135")
+    print ("netcat.py -t localhost -p 5555 -l -c")
+    print ("netcat.py -t localhost -p 5555 -l -u=target")
+    print ("netcat.py -t localhost -p 5555 -l -e=\"cat /etc/passwd\"")
+    print ("echo 'ABCDEFGHI' | ./netcat.py -t localhost -p 8088")
     sys.exit(0)
 
 # 服务端函数,与上篇中的 TCP 服务端还是很相似的
-def server_loop():
+def server_loop():  #定义一个服务端
     server = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
-    server.bind(( TARGET, PORT ))
+    server.bind(( TARGET, PORT )) #绑定的ip和端口号
     server.listen(5)
 
     while True:
         client_socket, addr = server.accept()
         # 分拆一个线程处理新的客户端
-        client_thread = threading.Thread( target =client_handler, \
-                args=(client_socket,))
+        client_thread = threading.Thread( target =client_handler, args=(client_socket,))
         client_thread.start()
-
+#服务端接受ip和端口的发送的信息
 # 客户端函数,与上文中那个简易版的 netcat 有些相似,创建套接字然后进入循环收发数据
-def client_sender(buffer):
-    client = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
+def client_sender(buffer): #客户端
+    client = socket.socket( socket.AF_INET, socket.SOCK_STREAM ) #套接字，服务器之间通信，tcp
 
     try:
         # 连接到目标主机
         client.connect(( TARGET, PORT ))
 
         # 检测是否收到数据
-        if len(buffer):
-            client.send(buffer)
+        if len(buffer): #如果有收到数据
+            client.send(buffer) #客户端把数据发送
 
         while True:
             # 等待数据
@@ -67,7 +66,7 @@ def client_sender(buffer):
             response = ''
 
             while recv_len:
-                data = client.recv(4096)
+                data = client.recv(4096) #客户端接受数据
                 recv_len = len(data)
                 response += data
                 if recv_len < 4096:
@@ -75,8 +74,8 @@ def client_sender(buffer):
             print (response)
 
             # 等待更多数据,直到没有新的数据
-            buffer = raw_input('')
-            buffer += '\n'
+            buffer = raw_input('') #输入
+            buffer += '\n'   #输入的数据然后下一行
 
             client.send(buffer)
 
@@ -85,7 +84,7 @@ def client_sender(buffer):
         client.close()
 
 
-# 实现文件上传,命令执行以及与 shell 相关的功能(在一个名为 NETCAT_Liu 的特殊 shell)
+# 实现文件上传,命令执行以及与 shell 相关的功能(在一个名为 NETCAT 的特殊 shell)
 def client_handler(client_socket):
     global UPLOAD
     global EXECUTE
@@ -105,8 +104,8 @@ def client_handler(client_socket):
 
         # 以二进制的方式写入字节
         try:
-            with open(UP_DEST, 'wb') as f:
-                f.write(file_buffer)
+            with open(UP_DEST, 'wb') as f: #以写以及二进制的方式打开f
+                f.write(file_buffer) #将file_buffer写入f文件
                 client_socket.send('File saved to %s\r\n' % UP_DEST)
         except:
             client_socket.send('Failed to save file to %s\r\n' % UP_DEST)
