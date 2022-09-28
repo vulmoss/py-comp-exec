@@ -31,7 +31,7 @@ def usage(): #打印所有的提示
     print ("")
     print ("Examples:")
     print ("netcat.py -t localhost -p 5555 -l -c")
-    print ("netcat.py -t localhost -p 5555 -l -u=target")
+    print ("netcat.py -t localhost -p 5555 -l -u=/tmp/target")
     print ("netcat.py -t localhost -p 5555 -l -e=\"cat /etc/passwd\"")
     print ("echo 'ABCDEFGHI' | ./netcat.py -t localhost -p 8088")
     sys.exit(0)
@@ -121,20 +121,20 @@ def client_sender(buffer): #客户端
 
 
 # 实现文件上传,命令执行以及与 shell 相关的功能(在一个名为 NETCAT 的特殊 shell)
-def client_handler(client_socket):
-    global UPLOAD
-    global EXECUTE
-    global COMMAND
+def client_handler(client_socket): #定义功能的行为
+    global UPLOAD #上传
+    global EXECUTE  #执行
+    global COMMAND #命令
 
     # 检测上传文件
-    if len(UP_DEST): #UP_DEST是 -u 后面的参数
+    if len(UP_DEST): #UP_DEST是 -u 后面的参数 上传
         file_buf = ''
 
         # 读取数据,直到没有新的数据
         while 1:
-            data = client_socket.recv(1024)
+            data = client_socket.recv(1024) #接受信息
             if data:
-                file_buffer += data
+                file_buffer += data  #这个while是为了得到file_buffer
             else:
                 break
 
@@ -142,7 +142,7 @@ def client_handler(client_socket):
         try:
             with open(UP_DEST, 'wb') as f: #以写以及二进制的方式打开f
                 f.write(file_buffer) #将file_buffer写入f文件
-                client_socket.send('File saved to %s\r\n' % UP_DEST)
+                client_socket.send('File saved to %s\r\n' % UP_DEST) #发送信息
         except:
             client_socket.send('Failed to save file to %s\r\n' % UP_DEST)
 
@@ -155,11 +155,11 @@ def client_handler(client_socket):
     if COMMAND:
         while True:
             # 显示命令提示符:
-            client_socket.send('[NETCAT_Liu]# ')
+            client_socket.send('[NETCAT]# ')
             cmd_buffer = ''
 
             # 扫描换行符以确定何时执行命令
-            while '\n' not in cmd_buffer:
+            while '\n' not in cmd_buffer: #not a enter
                 cmd_buffer += client_socket.recv(1024)
 
             # 回传命令输出
@@ -167,7 +167,7 @@ def client_handler(client_socket):
             client_socket.send(response)
 
 def run_command(command):
-    command = command.rstrip()
+    command = command.rstrip() #rstrip就是把字符串末尾指定字符删除
     print (command)
     try:
         output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
