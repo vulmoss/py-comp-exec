@@ -80,7 +80,7 @@ def client_sender(buffer): #客户端
             client.send(buffer)
 
     except:
-        print( '[*] Exception. Exiting.')
+        print('[*] Exception. Exiting.')
         client.close()
 
 
@@ -134,8 +134,7 @@ def run_command(command):
     command = command.rstrip()
     print (command)
     try:
-        output = subprocess.check_output(command, stderr=subprocess.STDOUT, \
-                shell=True)
+        output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
     except:
        output = "Failed to execute command.\r\n"
     return output
