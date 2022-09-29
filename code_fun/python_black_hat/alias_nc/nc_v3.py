@@ -72,7 +72,8 @@ def main():
         client_sender(buffer)
     if listen:
         server_loop()
-
+        main()
+#当做客户端使用，发送和接受信息
 def client_sender(buffer):
     client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     try:
@@ -96,7 +97,7 @@ def client_sender(buffer):
     except:
         print("[*] Exception! Exiting.")
         client.close()
-
+#将命令执行输入，返回命令直接的输出
 def run_command(command):
     command = command.rstrip()
     try:
@@ -105,6 +106,7 @@ def run_command(command):
         output = "Failed to execute command.\r\n"
     return output
 
+#处理连接到本服务端的客户端
 def client_handler(client_socket):
     global upload
     global execute
@@ -140,7 +142,7 @@ def client_handler(client_socket):
 
 
 
-
+#nc 当做服务端使用
 def server_loop():
     global target
     if not len(target):
@@ -155,6 +157,5 @@ def server_loop():
         client_thread.start()
 
 
-
-
-
+if __name__ == '__main__':
+    main()
