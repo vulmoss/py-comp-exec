@@ -74,9 +74,9 @@ def main():
 
 # 服务端函数,与上篇中的 TCP 服务端还是很相似的
 def server_loop():  #定义一个服务端
-    server = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
+    server = socket.socket( socket.AF_INET, socket.SOCK_STREAM ) #创建scoket
     server.bind(( TARGET, PORT )) #绑定的ip和端口号
-    server.listen(5)
+    server.listen(5) #监听
 
     while True:
         client_socket, addr = server.accept()
