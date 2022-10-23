@@ -21,6 +21,26 @@ def hexdump(sec,length = 16):
         result.append(b"%04X %-*s %s" %(i,length*(digits + 1),hexa,text))
     print(b'\n'.join(result))
 
+def request_handler(buffer):
+    return buffer
+
+def response_handler(buffer):
+    return buffer
+
+def receive_from(connection): #这个入参是什么意思??
+    buffer = ""
+
+    connection.settimeout(5)#超过5秒 超时
+    try:
+        while True:
+            data = connection.recv(4096) #不断接受数据 赋值给data
+            if not data:
+                break
+            buffer += data
+    except:
+        pass
+    return buffer #最后返回所有的接受的数据
+
 def proxy_handler(client_socket,remote_host,remote_port,receive_first):
     remote_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM) #目标socket
     remote_socket.connect((remote_host,remote_port))
@@ -38,6 +58,15 @@ def proxy_handler(client_socket,remote_host,remote_port,receive_first):
         if len(local_buffer):
             print("[==>] receiving %d bytes to " %len(local_buffer))
             hexdump(local_buffer)
+            local_buffer = request_handler(local_buffer)
+
+            remote_socket.send(local_buffer)
+            print("[==>] send to remote.")
+
+    remote_buffer = receive_from(remote_socket)
+
+    if remote_buffer :
+        remote_buffe
 
 def server_loop(local_host,local_port,remote_host,remote_port,receive_first): #服务端的配置
     server = socket.socket(socket.AF_INET,socket.SOCK_STREAM) #创建一个socket
@@ -81,3 +110,5 @@ def main():
 
 
 
+if __name__ == '__main__':
+    main()
