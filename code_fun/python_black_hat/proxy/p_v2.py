@@ -2,8 +2,7 @@ import sys
 import socket
 import threading
 
-HEX_FILTER = ''.join(
-    [(len(repr(chr(i))) == 3) and chr(i) or '.' for i in range(256)])
+HEX_FILTER = ''.join( [(len(repr(chr(i))) == 3) and chr(i) or '.' for i in range(256)])
 
 
 def hexdump(src, length=16, show=True):
@@ -23,10 +22,10 @@ def hexdump(src, length=16, show=True):
         return results
 
 
-def receive_from(connection):
-    buffer = b""
-    connection.settimeout(10)
-    try:
+def receive_from(connection): #接收连接的数据
+    buffer = b"" #
+    connection.settimeout(10)#连接的设定超时是10秒
+    try: #判断有数据接收，没有数据的时候跳出循环
         while True:
             data = connection.recv(4096)
             if not data:
@@ -49,12 +48,12 @@ def response_handler(buffer):
     # perform packet modifications
     return buffer
 
-
+#主逻辑
 def proxy_handler(client_socket, remote_host, remote_port, receive_first):
     remote_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    remote_socket.connect((remote_host, remote_port))
-
-    if receive_first:
+    remote_socket.connect((remote_host, remote_port)) #创建socket后连接
+#目标socket，建立连接目标的ip和目标端口
+    if receive_first: # receive_first是true的时候
         remote_buffer = receive_from(remote_socket)
         if len(remote_buffer):
             print("[<==] Received %d bytes from remote." % len(remote_buffer))
@@ -133,8 +132,7 @@ def main():
     else:
         receive_first = False
 
-    server_loop(local_host, local_port,
-                remote_host, remote_port, receive_first)
+    server_loop(local_host, local_port,remote_host, remote_port, receive_first)
 
 
 if __name__ == '__main__':
