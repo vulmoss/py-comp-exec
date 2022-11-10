@@ -9,6 +9,6 @@ def hanoi(numRing, startPeg, endPeg):
         print('Move ring',numRings,'from peg', startPeg, ' to peg', endPeg)
         numMoves += 1
         numMoves += hanoi(numRings -1 ,6 - startPeg - endPeg, endPeg)
-    return numMoves
+    print(numMoves)
 if __name__ == '__main__':
     hanoi(4,1,3)
