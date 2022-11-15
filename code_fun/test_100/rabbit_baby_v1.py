@@ -11,7 +11,7 @@
 """
 
 """
-迭代循环，不断用新值取代变量的旧值，然后由变量旧值递推出变量新值的过程 
+迭代循环，不断用新值取代变量的旧值，然后由变量旧值递推出变量新值的过程  f(n) = f(n-1) + f(n-2)
 """
 def fb_number(): #兔子🐰没有伦理问题QAQ
     fb1 = 1
@@ -21,10 +21,10 @@ def fb_number(): #兔子🐰没有伦理问题QAQ
     while i <= 30:
         fbi = fb1 + fb2
         print("%6d " %fbi,end = " ") #从第三个月开始fbi 代表了对数
-        if i % 4 == 0:
+        if i % 4 == 0: #4行数据输出一次
             print()
-        fb2 = fb1
-        fb1 = fbi
+        fb2 = fb1 #f(n-2) = f(n-1)
+        fb1 = fbi  # f(n-1) = f(n)
         i += 1
 if __name__ == "__main__":
     fb_number()
