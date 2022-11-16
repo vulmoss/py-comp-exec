@@ -26,5 +26,5 @@ def hanoi(numRings, startPeg, endPeg):
 
 
 if __name__ == "__main__":
-    numMoves = hanoi(5, 1, 3)
+    numMoves = hanoi(3, 1, 3)
     print("move:", numMoves)
