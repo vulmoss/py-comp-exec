@@ -28,8 +28,8 @@ def countDay(currentDay):
     perMonth = [0,31,28,31,30,31,30,31,31,30,31,30]
     totalDay=0
     year = 1990
-    while year < currentDay('year'):
-        if runyear(year) == 1:
+    while year < currentDay['year']:
+        if runYear(year) == 1:
             totalDay  = totalDay + 366
         else:
             totalDay = totalDay + 365
@@ -48,7 +48,7 @@ def results_day():
     year,month,day = [int(i) for i in input().split()]
     today = {'year':year,'month':month,'day':day}
     totalDay = countDay(today)
-    print("%dyear%dmonth%dday-19900101 %days" %(year,month,day,totalDay))
+    print("%d year%d month%d day - 19900101 %d days" %(year,month,day,totalDay))
     result = totalDay %5
     if result >0 and result <4:
         print("today fash")
