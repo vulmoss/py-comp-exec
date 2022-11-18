@@ -15,7 +15,7 @@ def best_money():
     i = 0
     money= 0.0
     while i<5:
-        money = (money+1000) /(1+0.0063 * 12)
+        money = (money+1000) /(1+0.0063 * 12) #每次都取出1千，所以钱数要加上1千，  被除数是 加上利息之后的百分率
         i += 1
     print("Your sould save money : %0.2f" %money)
 if __name__== "__main__":
