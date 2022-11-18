@@ -11,3 +11,12 @@
 假设银行一年整存零取的月息为0.63%。现在某人手中有一笔钱，他打算在今后5年中的每年年底取出1000元，到第5年时刚好取完，请算出他存钱时应存入多少。
 """
 
+def best_money():
+    i = 0
+    money= 0.0
+    while i<5:
+        money = (money+1000) /(1+0.0063 * 12)
+        i += 1
+    print("Your sould save money : %0.2f" %money)
+if __name__== "__main__":
+    best_money()
