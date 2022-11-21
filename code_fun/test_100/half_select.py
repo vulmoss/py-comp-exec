@@ -33,3 +33,7 @@ def half_select(a):
         print("m = %d,index = %d" %(m,k))
     else:
         print("Not be found!")
+
+if __name__ == "__main__":
+    a = [-4,-3,0,4,7,9,13,45]
+    half_select(a)
