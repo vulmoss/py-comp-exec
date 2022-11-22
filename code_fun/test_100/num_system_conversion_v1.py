@@ -13,3 +13,38 @@
 
 
 """
+
+
+def char_to_num(ch):
+    if ch >= '0' and ch <= '9':
+        return int(ch)
+    else:
+        return ord(ch)
+
+def num_to_char(num):
+    if num >= 0 and num <=9:
+        return str(num)
+    else:
+        return chr(num)
+
+def source_to_decimal(temp,source):
+    decimal_num = 0
+    for i in range(len(temp)):
+        decimal_num = (decimal_num * source) + char_to_num(temp[i])
+        return decimal_num
+
+def decimal_to_source(decimal_num,object):
+    decimal = []
+    while decimal_num:
+        decimal.append(num_to_char(decimal_num % object))
+        decimal_num //= object
+    return decimal
+
+def output(decimal):
+    f = len(decimal) -1
+    while f >= 0:
+        print(decimal[f],end=' ')
+        f -= 1
+    print()
+
+
