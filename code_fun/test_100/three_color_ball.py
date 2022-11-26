@@ -14,9 +14,9 @@ def ball():
     print("\t rad \t whate \t block")
     print("+++++++++++++++++++++++++++++++++++++++")
     num = 0
-    for r in range(0,4): 
+    for r in range(0,4):  #3个红球，所以红球的范围是0到3
         for w in range(0,4):
-            if 8 - r - w <=6:
+            if 8 - r - w <=6: #黑色的球是6个，所以黑球的范围是0到6 ,
                 num += 1
                 print("%2d: %d \t\t %d \t \t %d" %(num, r,w,8-r-w))
 
