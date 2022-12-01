@@ -12,3 +12,22 @@
 左读是完全一样的），为95859。两小时后里程表上出现了一个新的对称数，该数仍为5位数。问该车的速度是多少？
 新的对称数是多少？
 """
+
+
+def car_speed():
+    a = [0,0,0,0,0]
+    for i in range(95860,10000):
+        t = 0
+        k = 10000
+        while k >= 10:
+            a[t] = (i % k) //(k // 10)
+            k /= 10
+            t += 1
+        if a[0] == a[4] and a[1] == a[3]:
+            print("the number is : %d%d%d%d%d" %(a[0],a[1],a[2],a[3],a[4]))
+            print("the car speed is :%0.2f" %((i-95859)//2.0))
+            break
+
+
+if __name__ == "__main__":
+    car_speed()
