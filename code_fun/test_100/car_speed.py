@@ -16,9 +16,9 @@
 
 def car_speed():
     a = [0,0,0,0,0]
-    for i in range(95860,10000):
+    for i in range(95860,100000):
         t = 0
-        k = 10000
+        k = 100000
         while k >= 10:
             a[t] = (i % k) //(k // 10)
             k /= 10
