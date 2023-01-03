@@ -7,4 +7,14 @@
 # @Software : PyCharm
 
 def isPrime():
-    pass
+    v1 = int(input("Please input a number,we will analysisthe number is Prime:\n"))
+    for i in range(2,v1):
+        if v1 % i == 0:
+            print("the %d is not prime" %v1)
+            break
+        else :
+            print("%d is prime" %v1)
+            break
+
+if __name__ == "__main__":
+    isPrime()
