@@ -48,4 +48,4 @@ if __name__ == '__main__':
     print("please input personal tax: ",end='')
     profit = int(input())
     tax = caculateTax(profit)
-    print("you personal tax is %12.2f" % tax)
+    print("you personal tax is %12.2f", tax)
