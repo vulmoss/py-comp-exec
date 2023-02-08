@@ -13,6 +13,7 @@
 征收15%。·超过5000～20000元的部分，征收20%。·超过20000～40000元的部分，征收25%。
 ·超过40000～60000元的部分，征收30%。·超过60000～80000元的部分，征收35%。·超过80000～100000元的
 部分，征收40%。·超过100000元以上的，征收45%
+一份工资收税不累加，
 """
 
 
@@ -35,17 +36,13 @@ def caculateTax(profit):
     i = 0
     for i in range(len(taxtable)):
         if (profit > taxtable[i][0]):
-            if (profit < taxtable[i][1]):
-                tax += (taxtable[i][1] - taxtable[i][0]) * taxtable[i][2]
+            if (profit > taxtable[i][1]):
+                continue
             else:
-                tax += (profit - taxtable[i][0]) * taxtable[i][2]
-                profit -= taxtable[i][1]
-                if profit < 0:
-                    profit = 0
-                    print("tax range : %6d_%6d range number is %6.2f  out range %6d" %(taxtable[i][0],taxtable[i][1],tax,profit))
-                    return tax
+                tax = profit * taxtable[i][2]
+                return tax
 if __name__ == '__main__':
     print("please input personal tax: ",end='')
     profit = int(input())
     tax = caculateTax(profit)
-    print("you personal tax is %12.2f", tax)
+    print("you personal tax is %12.2f" %tax)
