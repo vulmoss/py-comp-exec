@@ -40,7 +40,7 @@ def caculateTax(profit):
                 continue
             else:
                 tax = profit * taxtable[i][2]
-                return tax
+    return tax
 if __name__ == '__main__':
     print("please input personal tax: ",end='')
     profit = int(input())

@@ -35,15 +35,15 @@ def caculateTax(profit):
     i = 0
     for i in range(len(taxtable)):
         if (profit > taxtable[i][0]):
-            if (profit > taxtable[i][2]):
-                tax += (taxtable[i] - taxtable[i][0]) * taxtable[i][2]
+            if (profit > taxtable[i][1]):
+                tax += (taxtable[i][1] - taxtable[i][0]) * taxtable[i][2]
             else:
                 tax += (profit - taxtable[i][0]) * taxtable[i][2]
-                profit -= taxtable[i][1]
-                if profit < 0:
-                    profit = 0
-                    print("tax range : %6d_%6d range number is %6.2f  out range %6d" %(taxtable[i][0],taxtable[i][1],tax,profit))
-                    return tax
+            profit -= taxtable[i][1]
+            if profit < 0:
+                profit = 0
+            print("tax range : %6d ~ %6d range number is %6.2f  out range %6d" %(taxtable[i][0],taxtable[i][1],tax,profit))
+    return tax
 if __name__ == '__main__':
     print("please input personal tax: ",end='')
     profit = int(input())
