@@ -42,8 +42,9 @@ def caculateTax(profit):
             profit -= taxtable[i][1]
             if profit < 0:
                 profit = 0
+            continue
             print("tax range : %6d ~ %6d range number is %6.2f  out range %6d" %(taxtable[i][0],taxtable[i][1],tax,profit))
-    return tax
+        return tax
 if __name__ == '__main__':
     print("please input personal tax: ",end='')
     profit = int(input())
