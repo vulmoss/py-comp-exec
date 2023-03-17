@@ -15,12 +15,12 @@ def computing_ladder(n):
     print("in 1-%d mount number is:" %n)
     sum = 0
     for i in range(7,n+1):
-        if (i%7==0) and (i%6==5) and (i%5==4) and (i%3==2):
-            sum += 1
+        if (i%7==0) and (i%6==5) and (i%5==4) and (i%3==2): #这个数字的特性，符合逻辑的i
+            sum += 1                                        #每有一个i sum就加1 计数
             print("%d" %i)
-    print("the mount 1 - %d number is %d" %(n,sum))
+    print("the mount 1 - %d number have  %d" %(n,sum))
 
 if __name__ =="__main__":
-    while True:
+    while True:                             #不断的循环，可以输入多次n
         n = int(input("please input n :"))
         computing_ladder(n)
