@@ -36,7 +36,7 @@ def printResult(s,j):
     print("%4d" %j ,end=" ")
     k = 0
     while k < 10:
-        print("%4d" % s[k],end = " ")
+        print("%4d" % s[k],end =" ")
         k += 1
         j += 1
     print()
@@ -46,9 +46,5 @@ if __name__ == "__main__":
     print("child            1  2 3 4 5 6 7 8 9 10")
     print("------------------------------------------------------")
     print(" count candy")
-    j = 0
-    print("%d" % j ,end=" ")
-    for i in range(len(sweet)):
-        print("%d" % sweet[i],end="  ")
-        print()
-        giveSweet(sweet,j)
+    j =0
+    giveSweet(sweet,j)
