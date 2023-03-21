@@ -28,4 +28,27 @@ def giveSweet(sweet,j):
                 sweet[i] = (sweet[i] + 1) //2
                 t[i] = sweet[i]
         for n in range(0,9):
-            
+            sweet[n+1] = sweet[n+1] +t[n]
+        sweet[0] += t[9]
+        j += 1
+        printResult(sweet,j)
+def printResult(s,j):
+    print("%4d" %j ,end=" ")
+    k = 0
+    while k < 10:
+        print("%4d" % s[k],end = " ")
+        k += 1
+        j += 1
+    print()
+
+if __name__ == "__main__":
+    sweet = [10,2,8,22,16,4,10,6,14,20]
+    print("child            1  2 3 4 5 6 7 8 9 10")
+    print("------------------------------------------------------")
+    print(" count candy")
+    j = 0
+    print("%d" % j ,end=" ")
+    for i in range(len(sweet)):
+        print("%d" % sweet[i],end="  ")
+        print()
+        giveSweet(sweet,j)
