@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# @Time     : 2023/3/18 00:07
+# @Time     : 2023/3/22 19:53
 # @Author   : VulMoss
 # @Site     : 
-# @File     : distribution_candy.py.py
-# @Software : PyCharm
+# @File     : candy_v2.py
+# @Software : vi
 '''
 10个小孩围成一圈分糖果，老师分给第1个小孩10块，第2个小孩2块，第3个小孩8块，第4个小孩22块，第5个小孩16块，第6个小孩4块，第7个小孩10块，
 第8个小孩6块，第9个小孩14块，第10个小孩20块。然后所有的小孩同时将手中的糖分一半给右边的小孩；糖块数为奇数的人可向老师要一块。
@@ -46,5 +46,4 @@ if __name__ == "__main__":
     print("child            1  2 3 4 5 6 7 8 9 10")
     print("------------------------------------------------------")
     print(" count candy")
-    j =0
-    giveSweet(sweet,j)
+    giveSweet(sweet,0)
