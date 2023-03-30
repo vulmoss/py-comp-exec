@@ -14,10 +14,10 @@
 
 def s_num():
     number = 0
-    for x in range(0,11):
+    for x in range(1,11):
         y = 20 - 2*x
         z = 30 -x -y
-        if 3*x + 2*y + z ==50:
+        if x > 0 and y > 0 and z > 0 and 3*x + 2*y + z ==50:
             number += 1
             print("%2d:%4d%5d%6d" % (number,x,y,z))
 
