@@ -11,3 +11,16 @@
 数字转换成字符串，然后切片的方式，左右取出，并比较 [0:len(num)//2]
 '''
 
+def panlindreme(n):
+    m = n * n
+    num_str = str(m)
+    l_num = num_str[0:len(num_str)//2]
+    r_num = num_str[len(num_str)//2:]
+    if l_num ==r_num[::-1]:
+        return True
+    else:
+        return False
+
+if __name__ == '__main__':
+    n = int(input('please input the number: '))
+    print(panlindreme(n))
