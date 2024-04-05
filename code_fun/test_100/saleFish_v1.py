@@ -12,12 +12,11 @@
 """
 
 def soleFish():
-    i = 23
-    flag = 0
-    x = 23
+    i = 23 # 11 * 2 +1
+    flag = 0 #标志位
     while flag == 0:
-        j = 1
-        x = i
+        j = 1 #第几次卖
+        x = i # 卖鱼前的总数
         while j <= 4 and x >= 11:
             if (x + 1) % (j + 1) == 0:
                 x -= (x+1)//(j+1)
