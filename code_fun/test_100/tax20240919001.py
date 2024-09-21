@@ -8,7 +8,6 @@
 
 
 
-
 TAXBASE = 2000
 
 #分为9个阶段，每个阶段第一个值为个税起征点，第二个值为该阶段截止点，第三个值为税率
@@ -24,7 +23,7 @@ TaxTable = [(0, 500, 0.05),
 
 #计算税收
 def CaculateTax(profit):
-    tax = 0.0
+    tax = 0.0      #税率
     profit -= TAXBASE                                               # 超过个税起征点的收入
     i = 0
     for i in range(len(TaxTable)):
@@ -48,3 +47,8 @@ if __name__ == '__main__':
     profit = int(input())
     tax = CaculateTax(profit)
     print("您的个人所得税为 %12.2f" % tax)
+
+
+
+
+
