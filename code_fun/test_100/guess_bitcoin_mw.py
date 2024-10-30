@@ -36,15 +36,17 @@ def convertMne(s):
     mnemo = Mnemonic("english")
     word_list = mnemo.wordlist
     dictMnemo = convertDict(word_list)
-#    print(dictMnemo)
-    for i in range(len(s)):
-#        return 0
-        print(s)
+    matching_keys = [key for value in s for key,val in dictMnemo.items() if val == value]
+    print(matching_keys)
 
-def convertBintoTen(s):
-    num_from_bin = int(s, 2)
-    return num_from_bin
+
+
+
+def convertBintoTen(str_list):
+    num_list = [int(item,2) for item in str_list]
+    return ( num_list)
 
 if __name__ == '__main__':
     m = splitEleven(getNumber())
-    convertMne(m)
+    s = convertBintoTen(m)
+    convertMne(s)
