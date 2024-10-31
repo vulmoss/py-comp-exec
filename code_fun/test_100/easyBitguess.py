@@ -1,29 +1,32 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# @Time     : 2024/10/20 17:39
+# @Time     : 2024/10/31 22:16
 # @Author   : VulMoss
 # @Site     : 
-# @File     : guess_sum.py
+# @File     : easyBitguess.py
 # @Software : PyCharm
 
+
+import bitcoin
 import random
 import hashlib
 import textwrap
 from mnemonic import Mnemonic
+# 生成私钥
+###private_key = bitcoin.random_key()
 
+# 根据私钥生成公钥
+###public_key = bitcoin.privtopub(private_key)
 
-def getNumber():
-    random_sum = ''.join([str(random.randint(0, 1)) for i in range(256)])
-    encoded_str = random_sum.encode('utf-8')
-    hash_object = hashlib.sha256()
-    sum_sha256 = hash_object.update(encoded_str)
-    sha_hex = hash_object.hexdigest()
-    sha_bin = bin(int(sha_hex, 16))[2:]
-    sha_bin8 = sha_bin[:8]
-    final_sum = ''.join([random_sum, sha_bin8])
-    return(final_sum)
+# 根据公钥生成比特币地址
+###bitcoin_address = bitcoin.pubtoaddr(public_key)
 
+###print("Private key:", private_key)
+####print("Public key:", public_key)
+####print("Bitcoin address:", bitcoin_address)
 
+private_bit = bin(int(private_key, 16))[2:]
+print("pri2:",private_bit)
 
 
 
@@ -33,8 +36,8 @@ def convertDict(array):
         dictionary[value] = i
     return (dictionary)
 
-def splitEleven(f):
-    return(textwrap.wrap(f, width=11))
+def splitEleven(private_bit):
+    return(textwrap.wrap(private_bit, width=11))
 
 def convertMne(s):
     mnemo = Mnemonic("english")
@@ -44,13 +47,12 @@ def convertMne(s):
     print(' '.join(map(str,matching_keys)))
 
 
-
-
 def convertBintoTen(str_list):
     num_list = [int(item,2) for item in str_list]
     return ( num_list)
 
 if __name__ == '__main__':
-    m = splitEleven(getNumber())
-    s = convertBintoTen(m)
+    private_key = bitcoin.random_key()
+    private_bit = bin(int(private_key, 16))[2:]
+    s = convertBintoTen(private_bit)
     convertMne(s)
